@@ -2,6 +2,8 @@ import { View, Button, Text, TextInput } from "react-native";
 import { useEffect, useState } from "react";
 import EstudanteService from "../service/EstudanteService";
 import { firestoreDb } from "../firebase/firebase_config";
+import { estilos } from "../css/css";
+
 
 const EditarEstudante = (props) =>{
 
@@ -41,13 +43,13 @@ const EditarEstudante = (props) =>{
     }
 
     return(
-        <View>
-            <Text>Criar Estudante</Text>
-            <TextInput placeholder="Nome:" value={nome} onChangeText={(nome) => setNome(nome)}></TextInput>
-            <TextInput placeholder="Curso:" value={curso} onChangeText={(curso) => setCurso(curso)}></TextInput>
-            <TextInput placeholder="IRA:" value={ira} onChangeText={(ira) => setIra(ira)}></TextInput>
+        <View style={estilos.container}>
+            <Text style={estilos.cabecalho}>Criar Estudante</Text>
+            <Text>Nome:</Text><TextInput placeholder="Nome:"  style={estilos.input} value={nome} onChangeText={(nome) => setNome(nome)}></TextInput>
+            <Text>Curso:</Text><TextInput placeholder="Curso:" style={estilos.input} value={curso} onChangeText={(curso) => setCurso(curso)}></TextInput>
+            <Text>IRA:</Text><TextInput placeholder="IRA:"  style={estilos.input} value={ira} onChangeText={(ira) => setIra(ira)}></TextInput>
 
-            <View>
+            <View style={estilos.botao}>
                 <Button title="Editar" onPress={cadastro}></Button>
             </View>
 

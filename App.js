@@ -8,8 +8,6 @@ export default function App() {
     
     <NavigationContainer>
       <RoutesCrud></RoutesCrud>
-
-
     </NavigationContainer>
   );
 }

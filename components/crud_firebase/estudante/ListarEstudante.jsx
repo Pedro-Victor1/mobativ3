@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FlatList } from 'react-native';
+import { estilos } from "../css/css";
+
 
 const ListarEstudante = (props) => {
 
@@ -28,7 +30,9 @@ const ListarEstudante = (props) => {
     }
 
     return(
-            <SafeAreaView>
+            <SafeAreaView style={estilos.container}>
+                <Text style={estilos.cabecalho}>Lista de Estudantes</Text>
+
                 <FlatList
                     data={estudantes}
                     renderItem={
