@@ -1,28 +1,28 @@
 import { getDocs, collection, addDoc, docRef, doc, getDoc, docSnap, updateDoc, deleteDoc } from "firebase/firestore/lite";
 import { firestoreDb } from "../firebase/firebase_config";
 
-class ProfessorService{
+class EstudanteService{
     static listar = (firestoreDb, callback) =>{
-        getDocs(collection(firestoreDb, 'professor'))
+        getDocs(collection(firestoreDb, 'estudante'))
         .then(
             (snapshot)=>{
-                const professor = []
+                const estudante = []
                 snapshot.forEach(
                     (document)=>{
                         const id=document.id
-                        const {nome, curso, salario} = document.data();
-                        professor.push({id, nome, curso, salario,})
+                        const {nome, curso, ira} = document.data();
+                        estudante.push({id, nome, curso, ira,})
                     }
                     //foreach
                 )
-                callback(professor)
+                callback(estudante)
             }//snapshot
         )//then
         .catch(error=>console.log(error));
     }
 
-    static criar = (firestoreDb,callback,professor) => {
-        addDoc(collection(firestoreDb, 'professor'), professor)
+    static criar = (firestoreDb,callback,estudante) => {
+        addDoc(collection(firestoreDb, 'estudante'), estudante)
         .then(
             (docRef)=>{
                 callback(docRef.id)
@@ -32,7 +32,7 @@ class ProfessorService{
     }
 
     static recuperar = (firestoreDb, callback, id)=>{
-        getDoc(doc(firestoreDb, "professor", id))
+        getDoc(doc(firestoreDb, "estudante", id))
         .then(
             (docSnap) => {
                 if(docSnap.exists()){
@@ -43,8 +43,8 @@ class ProfessorService{
         .catch(error => console.log(error))
     }
 
-    static atualizar = (firestoreDb, callback, id, professor) => {
-        updateDoc(doc(firestoreDb, 'professor', id), professor)
+    static atualizar = (firestoreDb, callback, id, estudante) => {
+        updateDoc(doc(firestoreDb, 'estudante', id), estudante)
     .then(
         ()=>{
             callback()
@@ -54,11 +54,11 @@ class ProfessorService{
     }
 
     static apagar = (firestoreDb, callback, id) => {
-        deleteDoc(doc(firestoreDb, 'professor', id))
+        deleteDoc(doc(firestoreDb, 'estudante', id))
     .then(()=>callback(true))
     .catch(error=>console.log(error))
     }
 
 }
 
-export default ProfessorService
+export default EstudanteService

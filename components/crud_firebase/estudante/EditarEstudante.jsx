@@ -1,6 +1,6 @@
 import { View, Button, Text, TextInput } from "react-native";
 import { useEffect, useState } from "react";
-import EstudanteService from "../service/ProfessorService";
+import EstudanteService from "../service/EstudanteService";
 import { firestoreDb } from "../firebase/firebase_config";
 
 const EditarEstudante = (props) =>{

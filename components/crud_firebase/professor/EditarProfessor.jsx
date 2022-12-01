@@ -7,17 +7,17 @@ const EditarProfessor = (props) =>{
 
     const [nome, setNome] = useState(' ');
     const [curso, setCurso] = useState(' ');
-    const [ira, setSalario] = useState(' ')
+    const [salario, setSalario] = useState(' ')
 
     useEffect(
         ()=>{
             ProfessorService.recuperar(
                 firestoreDb,
-                (Professor) => {
+                (professor) => {
                     console.log(professor)
                     setNome(professor.nome)
                     setCurso(professor.curso)
-                    setIra(professor.ira)
+                    setSalario(professor.salario)
                 },
                 props.route.params.id
             )
@@ -57,4 +57,4 @@ const EditarProfessor = (props) =>{
 
 }
 
-export default EditarEstudante
+export default EditarProfessor

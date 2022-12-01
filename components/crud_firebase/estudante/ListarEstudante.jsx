@@ -1,5 +1,5 @@
 import {View, Text, Button} from 'react-native';
-import EstudanteService from '../service/ProfessorService';
+import EstudanteService from '../service/EstudanteService';
 import { firestoreDb } from '../firebase/firebase_config';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -21,8 +21,11 @@ const ListarEstudante = (props) => {
         }
     )
 
-    
-    
+    const apagarEstudante = (id) => {
+        EstudanteService.apagar(
+            firestoreDb,
+            (resultado)=>{},id)
+    }
 
     return(
             <SafeAreaView>
@@ -41,7 +44,8 @@ const ListarEstudante = (props) => {
                                         onPress={()=>props.navigation.navigate("EditarEstudante",{id:item.id})}></Button>
                                     </View>
                                     <View style={{margin:5}}>
-                                        <Button title='Apagar' ></Button>
+                                        <Button title='Apagar' 
+                                        onPress={()=>apagarEstudante(item.id)}></Button>
                                     </View>
                                 </View>
 

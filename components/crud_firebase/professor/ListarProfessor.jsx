@@ -15,11 +15,17 @@ const ListarProfessor = (props) => {
             ProfessorService.listar(
                 firestoreDb,
                 (professor)=>{
-                    setProfessores(Professores)
+                    setProfessor(professor)
                 }
                 )
         }
     )
+
+    const apagarProfessor = (id) => {
+        ProfessorService.apagar(
+            firestoreDb,
+            (resultado)=>{},id)
+    }
 
     
     
@@ -27,21 +33,22 @@ const ListarProfessor = (props) => {
     return(
             <SafeAreaView>
                 <FlatList
-                    data={profesores}
+                    data={professor}
                     renderItem={
                         ({item})=>{
                             return(
                                 <View style={{flexDirection:'row', justifyContent:'center'}}>
                                     <Text style={{margin:5}}>{item.nome}</Text>
                                     <Text style={{margin:5}}>{item.curso}</Text>
-                                    <Text style={{margin:5}}>{item.ira}</Text>
+                                    <Text style={{margin:5}}>{item.salario}</Text>
 
                                     <View style={{margin:5}}>
                                         <Button title='Editar' 
                                         onPress={()=>props.navigation.navigate("EditarProfessor",{id:item.id})}></Button>
                                     </View>
                                     <View style={{margin:5}}>
-                                        <Button title='Apagar' ></Button>
+                                        <Button title='Apagar'
+                                        onPress={()=>apagarProfessor(item.id)}></Button>
                                     </View>
                                 </View>
 
